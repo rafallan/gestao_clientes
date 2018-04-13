@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Administracao {% endblock %}
+
+
+{% block main %}
+
+    {% if user.is_authenticated %}
+        <p>Ola, {{ user.username }}</p>
+        <a href="{% url 'logout' %}">Sair</a>
+    {% endif %}
+
+    <ul>
+    {% for person in persons %}
+        <li><a href="{% url 'persons_update' person.id %}">{{ person.first_name}}</a>| <a href="{% url 'persons_delete' person.id %}" class="btn btn-danger">Excluir</a></li>
+    {% endfor %}
+    </ul>
+
+    <br>
+
+    <a href="{% url 'persons_new' %}" class="btn btn-primary">Novo Cliente</a>
+
+
+
+{% endblock %}
